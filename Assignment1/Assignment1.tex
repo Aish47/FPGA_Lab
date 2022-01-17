@@ -1,0 +1,85 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage[framed]{matlab-prettifier}
+\usepackage{graphicx}
+\usepackage[margin=0.75in]{geometry}
+
+
+
+\begin{document}
+\begin{center}
+
+{\huge EE5811 : FPGA LAB}\\
+{\large ASSIGNMENT 1}
+
+\end{center}
+P V Aishwarya \hfill \today \\ IS21MTECH14004
+
+\vspace{15pt}
+\hrule
+\vspace{5pt}
+
+
+\section*{Problem}
+
+Question 5) c) from papers/icse/cs/2018.pdf\\
+Simplify the following expression using Boolean Laws :
+
+\begin{center}
+    A.( A' + B ).C.( A + B )
+\end{center}
+
+\vspace{15pt}
+\hrule
+\vspace{5pt}
+
+\section*{Solution}
+
+\begin{align}
+     A.( A' + B ).C.( A + B ) 
+    \vspace{5pt}
+    &= A.A.( A' + B ).C.( A + B )\hspace{0.5cm}\{\text{As A = A.A}\}\\
+    \vspace{5pt}
+    &= A.( A' + B ).C.A.( A + B )\\
+    \vspace{5pt}
+    &= ( A.A' + A.B ).C.( A.A + A.B )\\
+     \vspace{5pt}
+     &= ( 0 + A.B ).C.( A + A.B )\hspace{0.5cm}\{\text{As A.A' = 0 and A.A = A}\}\\
+    \vspace{5pt}
+    &= A.B.C.( A )\hspace{0.5cm}\{\text{As A + A.B = A}\}\\ 
+    \vspace{5pt}
+    &= A.B.C.A\\
+    \vspace{5pt}
+    &= A.B.C
+\end{align}
+   
+ \begin{center}
+     So\hspace{0.3cm}\ A.( A' + B ).C.( A + B ) = A.B.C\\
+\end{center}
+
+\section*{Truth Table}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        $A$&$B$&$C$&LHS&RHS \\
+        \hline
+         0&0&0&0&0 \\
+         0&0&1&0&0 \\
+         0&1&0&0&0 \\
+         0&1&1&0&0 \\
+         1&0&0&0&0 \\
+         1&0&1&0&0 \\
+         1&1&0&0&0 \\
+         1&1&1&1&1 \\
+         \hline
+    \end{tabular}
+    \caption{Truth table for A.( A' + B ).C.( A + B ) = A.B.C}
+    \label{tab:my_label}
+\end{table}
+
+\end{document}
