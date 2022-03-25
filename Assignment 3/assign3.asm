@@ -30,7 +30,21 @@ loop:
    rcall DISPNUM
     brmi load_table
     rcall BITSEP
-
+    
+    mov r19, r21
+    com r19               ; A'
+    
+    or r19,r22            ; A' + B in r19
+    or r22,r21            ;A + B in r22
+    and r23,r21           ; A.C
+    and r22,r23           ; A.C.(A+B)
+    and r19,r22           ; A.C.(A+B)(A'+B)
+    lsl r19
+    lsl r19
+    lsl r19
+    lsl r19
+    lsl r19
+    
     and r22,r23           ; exp: A.B.C
     and r21,r22           ; final result in r21
     lsl r21
