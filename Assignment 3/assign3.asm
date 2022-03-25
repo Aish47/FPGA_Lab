@@ -12,7 +12,7 @@ out DDRD,r16           ; pins D1 - D7 are set as output
 
 sbi DDRB, 0
 
-ldi r16, 0b00000101    ;  the last 3 bits d>
+ldi r16, 0b00000101    ;  the last 3 bits define the prescaler, 101 => division by 1024
 out TCCR0B, r16
 
 ldi r18,0b00000000
@@ -31,8 +31,8 @@ loop:
     brmi load_table
     rcall BITSEP
 
-    and r22,r23           ; A.B.C
-    and r21,r22         ; final result in r>
+    and r22,r23           ; exp: A.B.C
+    and r21,r22           ; final result in r21
     lsl r21
     lsl r21
     lsl r21
@@ -47,35 +47,35 @@ loop:
     rjmp loop
 
 DELAY:         ;this is delay (function)
-               ;times to run the loop = 64 >
+               ;times to run the loop = 64 for 1 second delay
     lp2:
-        IN r16, TIFR0        ;tifr is timer>
+        IN r16, TIFR0        ;tifr is timer interupt flag (8 bit timer runs 256 times)
         ldi r17, 0b00000010
-        AND r16, r17         ;need second b>
+        AND r16, r17         ;need second bit
         BREQ DELAY
-        OUT TIFR0, r17       ;set tifr flag>
+        OUT TIFR0, r17       ;set tifr flag high
         dec r19
         brne lp2
     ret
 
-DISPNUM:
+DISPNUM:                     ; Routine for displaying number on seven segment
     lpm r17, Z+
     out PortD,r17
-
-ret
-BITSEP:
-    mov r21, r25     ;X LSB
+    ret
+    
+BITSEP:                      ; Routine for bit separation
+    mov r21, r25     ;A LSB
     sub r21,r20
     andi r21,0x01
     mov r11,r21
 
-    mov r22, r25     ;Y
+    mov r22, r25     ;B
     sub r22,r20
     andi r22,0x02
     lsr r22
     mov r12,r22
 
-    mov r23, r25     ;Z MSB
+    mov r23, r25     ;C MSB
     sub r23,r20
     andi r23,0x04
     lsr r23
