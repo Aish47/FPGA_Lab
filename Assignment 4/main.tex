@@ -1,0 +1,71 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage[framed]{matlab-prettifier}
+\usepackage{graphicx}
+\usepackage[margin=0.75in]{geometry}
+
+
+
+\begin{document}
+\begin{center}
+
+{\huge EE5811 : FPGA LAB}\\
+{\large ASSIGNMENT 4}
+
+\end{center}
+P V Aishwarya \\ IS21MTECH14004
+
+\vspace{15pt}
+\hrule
+\vspace{5pt}
+
+
+\section*{Problem}
+
+Question 5) c) from papers/icse/cs/2018.pdf\\
+Simplify the following expression using Boolean Laws :
+
+\begin{center}
+    A.( A' + B ).C.( A + B )
+\end{center}
+
+Implement above program in Arduino using AVR GCC.
+
+\vspace{15pt}
+\hrule
+\vspace{5pt}
+
+\section*{Solution}
+
+\section*{Truth Table}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        $A$&$B$&$C$&LHS&RHS \\
+        \hline
+         0&0&0&0&0 \\
+         0&0&1&0&0 \\
+         0&1&0&0&0 \\
+         0&1&1&0&0 \\
+         1&0&0&0&0 \\
+         1&0&1&0&0 \\
+         1&1&0&0&0 \\
+         1&1&1&1&1 \\
+         \hline
+    \end{tabular}
+    \caption{Truth table for A.( A' + B ).C.( A + B ) = A.B.C}
+    \label{tab:my_label}
+\end{table}
+
+Implemented the above truth table in Arduino. The inputs A,B,C equivalent are displayed on seven segment display and its corresponding output is displayed with LED.\\
+Steps: \\
+1. In Ubuntu, open test folder and write program in main.c\\
+2. One program was written to display LHS truth table and other to display RHS truth table.\\
+3. Compile and load the program using 'make' command.\\
+
+\end{document}
