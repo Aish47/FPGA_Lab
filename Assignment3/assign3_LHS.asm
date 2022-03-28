@@ -44,16 +44,7 @@ loop:
     lsl r22
     lsl r22
     
-    and r13,r12           ;A.B
-    and r11,r13	          ;A.B.C
-    lsl r11
-    lsl r11
-    lsl r11
-    lsl r11
-    
-
-    or r22,r11
-    out PortB,r22         ; Display output in pin 12, 13
+    out PortB,r22         ; Display output in LED pin 13
 
     ldi r19, $32
     rcall DELAY
@@ -97,7 +88,6 @@ BITSEP:                      ; Routine for bit separation
     mov r13,r23
 
     ret
-
 
 ret
 sev_seg: .DB  0x02, 0x9e, 0x24, 0x0c, 0x98,0x48, 0x40, 0x1e, 0x00, 0x08, 0x10, 0xc0, 0x62, 0x84, 0x60, 0x70
